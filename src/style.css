@@ -1,0 +1,21 @@
+html {
+    font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --border-grey: rgb(219, 219, 219);
+}
+
+header {
+    background-color: red;
+}
+
+main#task-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}

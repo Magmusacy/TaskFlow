@@ -1,0 +1,88 @@
+div.task-item {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    grid-template-rows: repeat(3, 30px);
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.4rem;
+    justify-content: space-around;
+    border-top: 1px solid var(--border-grey);
+    border-bottom: 1px solid var(--border-grey);
+}
+/* Finish those priorities */
+.priority-1,
+.priority-1 button {
+    color: red;
+    fill: red;
+}
+
+.priority-2,
+.priority-2 button {
+    color: orange;
+    fill: orange;
+}
+
+.priority-3,
+.priority-3 button {
+    color: blue;
+    fill: blue;
+}
+
+
+.priority-4,
+.priority-4 button {
+    color: black;
+    fill: black;
+    border-color: black;
+}
+
+.task-item .completion-status {
+    justify-self: center;
+}
+
+.completion-status button {
+    display: flex;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid;
+    /* border iwll depend on priorty */
+}
+
+.completion-status button svg {
+    transform: scale(2);
+}
+
+
+.completion-status button:hover {
+    cursor: pointer;
+    border: 5px solid green;
+    background-color: green;
+}
+
+.task-item .title {
+    grid-column: 2;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.task-item .description {
+    grid-column: 2;
+    color: rgb(100, 100, 100);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-item .due-date {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-item .due-date svg {
+    width: 20px;
+    height: 20px;
+}
