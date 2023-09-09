@@ -19,18 +19,26 @@
     <main id="task-container">
         <h1 id="project-title">Default Project</h1>
         <form action="#" id="new-task-form">
-            <label for="title">Title</label>
-            <input id="title" type="text">
+            <div>
+                <label for="title" hidden>Title</label>
+                <input id="title" type="text" placeholder="Task title">
+            </div>
 
-            <label for="description">Description</label>
-            <input id="description" type="text">
+            <div>
+                <label for="description" hidden>Description</label>
+                <textarea id="description" rows="2" type="text" placeholder="Description"></textarea>
+            </div>
 
-            <label for="due-date">Due Date</label>
-            <input id="due-date" type="datetime-local" name="dueDate">
+            <div>
+                <label for="due-date">Due Date</label>
+                <input id="due-date" type="datetime-local" name="dueDate">
+            </div>
 
-            <label for="priority">Priority</label>
-            <input id="priority" type="number" max="4" min="1">
-            
+            <div>
+                <label for="priority">Priority</label>
+                <input id="priority" type="number" max="4" min="1" value="1">
+            </div>
+ 
             <input type="submit" value="Submit">
         </form>
 
