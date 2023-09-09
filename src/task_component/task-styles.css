@@ -9,6 +9,16 @@ div.task-item {
     border-top: 1px solid var(--border-grey);
     border-bottom: 1px solid var(--border-grey);
 }
+
+.task-item.completed {
+    color: grey;
+    text-decoration: line-through;
+}
+
+.completed .completion-status svg {
+    transform: scale(2);
+}
+
 /* Finish those priorities */
 .priority-1,
 .priority-1 button {
@@ -33,7 +43,6 @@ div.task-item {
 .priority-4 button {
     color: black;
     fill: black;
-    border-color: black;
 }
 
 .task-item .completion-status {
@@ -47,18 +56,24 @@ div.task-item {
     height: 25px;
     border-radius: 50%;
     border: 2px solid;
-    /* border iwll depend on priorty */
+    transition: background-color 0.2s ease-in-out;
+
 }
 
 .completion-status button svg {
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+.completion-status button:hover svg,
+.completed .completion-status svg {
     transform: scale(2);
 }
 
-
-.completion-status button:hover {
+.completion-status button:hover,
+.completed .completion-status button {
     cursor: pointer;
-    border: 5px solid green;
-    background-color: green;
+    background-color: var(--button-hover);
 }
 
 .task-item .title {
@@ -85,4 +100,5 @@ div.task-item {
 .task-item .due-date svg {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
 }

@@ -1,8 +1,10 @@
 export default class Project {
+    id;
     title;
     #tasks = [];
 
-    constructor(title) {
+    constructor(id, title) {
+        this.id = id;
         this.title = title;
     }
 

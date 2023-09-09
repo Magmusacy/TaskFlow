@@ -1,16 +1,21 @@
 import './normalize.css';
 import './style.css';
-import Task from './task_component/task.js';
-import Project from './project_component/project.js';
+import Project from './project_component/project';
+import Task from './task_component/task';
+import * as appFlow from './app-flow';
+import './project_component/project-display';
 import { renderTask } from './task_component/task-display';
 
-const project1 = new Project('Testowy');
-const testDate = new Date("2023-09-08 13:37");
-const test1 = new Task('Do laundry', 'My clothes are stinky and I need to clean them', testDate, 1);
-project1.addNewTask(test1);
-console.log(project1);
-test1.changeCompletionStatus();
-console.log(test1);
-console.log('Hello, World!');
+const newTaskForm = document.querySelector('#new-task-form');
+newTaskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = e.target.elements['title'].value;
+    const description = e.target.elements['description'].value;
+    const dueDate = new Date(e.target.elements['due-date'].value);
+    const priority = +e.target.elements['priority'].value;
 
-renderTask(test1);
+    const newTaskId = appFlow.lastTaskId() + 1;
+    const newTask = new Task(newTaskId, title, description, dueDate, priority);
+    appFlow.currentProject.addNewTask(newTask);
+    renderTask(newTask);
+});

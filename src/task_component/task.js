@@ -1,11 +1,13 @@
 export default class Task {
+    id;
     title;
     description;
     #dueDate;
     #priority;
-    isCompleted = false;
+    #isCompleted = false;
     
-    constructor(title, description, dueDate, priority) {
+    constructor(id, title, description, dueDate, priority) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -37,7 +39,11 @@ export default class Task {
         return this.#priority;
     }
 
+    get isCompleted() {
+        return this.#isCompleted;
+    }
+
     changeCompletionStatus() {
-        this.isCompleted = this.isCompleted ? false : true; 
+        this.#isCompleted = this.#isCompleted ? false : true; 
     }
 }

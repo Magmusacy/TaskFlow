@@ -6,16 +6,60 @@ html {
     box-sizing: border-box;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 :root {
     --border-grey: rgb(219, 219, 219);
+    --button-hover: rgb(224, 224, 224);
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 305px 1fr;
+    grid-template-rows: 70px 1fr;
 }
 
 header {
-    background-color: red;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+    background-color: rgb(255, 17, 17);
+    padding: 10px;
+}
+
+header button {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: inherit;
+    border: 0;
+    border-radius: 6px;
+}
+
+header button:hover {
+    cursor: pointer;
+    background-color: rgba(148, 9, 9, 0.5);
+}
+
+header div {
+    grid-column: 2;
+    justify-self: center;
 }
 
 main#task-container {
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
     padding: 2rem;
+}
+
+#new-task-form {
+    
 }

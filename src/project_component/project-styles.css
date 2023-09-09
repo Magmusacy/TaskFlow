@@ -1,0 +1,59 @@
+aside {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    grid-column: 1 / 2;
+    grid-row: 2 / -1;
+    background-color: white;
+    z-index: 100;
+}
+
+aside ul {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+
+aside ul li {
+    width: 80%;
+}
+
+#project-container button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0;
+}
+
+#project-container button:hover {
+    cursor: pointer;
+    background: var(--button-hover);
+}
+
+#project-container button svg {
+    width: 20px;
+    height: 20px;
+}
+
+aside h2 {
+    text-align: center;
+}
+
+#dim-body {
+    position: absolute;
+    grid-column: 2 / -1;
+    grid-row: 2 / -1;
+    z-index: 1;
+    background-color: black;
+    opacity: 0.2;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
