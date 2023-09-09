@@ -8,11 +8,41 @@
 </head>
 <body>
     <header>
-        TaskFlow
+        <button id="toggle-sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+        </button>
+        <div>
+            TaskFlow
+        </div>
     </header>
 
     <main id="task-container">
-        <h1>Default Project</h1>
+        <h1 id="project-title">Default Project</h1>
+        <form action="#" id="new-task-form">
+            <label for="title">Title</label>
+            <input id="title" type="text">
+
+            <label for="description">Description</label>
+            <input id="description" type="text">
+
+            <label for="due-date">Due Date</label>
+            <input id="due-date" type="datetime-local" name="dueDate">
+
+            <label for="priority">Priority</label>
+            <input id="priority" type="number" max="4" min="1">
+            
+            <input type="submit" value="Submit">
+        </form>
+
+        <h2>Upcoming Tasks</h2>
+        <ul id="upcoming-tasks">
+
+        </ul>
+
+        <h2>Completed Tasks</h2>
+        <ul id="completed-tasks">
+
+        </ul>
     </main>
 </body>
 </html>
