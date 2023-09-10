@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <button id="toggle-sidebar">
+        <button id="toggle-sidebar" data-present="false">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
         </button>
         <div>
@@ -21,22 +21,22 @@
         <form action="#" id="new-task-form">
             <div>
                 <label for="title" hidden>Title</label>
-                <input id="title" type="text" placeholder="Task title">
+                <input id="title" type="text" placeholder="Task title" required>
             </div>
 
             <div>
                 <label for="description" hidden>Description</label>
-                <textarea id="description" rows="2" type="text" placeholder="Description"></textarea>
+                <textarea id="description" rows="2" type="text" placeholder="Description" required></textarea>
             </div>
 
             <div>
                 <label for="due-date">Due Date</label>
-                <input id="due-date" type="datetime-local" name="dueDate">
+                <input id="due-date" type="datetime-local" name="dueDate" required>
             </div>
 
             <div>
                 <label for="priority">Priority</label>
-                <input id="priority" type="number" max="4" min="1" value="1">
+                <input id="priority" type="number" max="4" min="1" value="1" required>
             </div>
  
             <input type="submit" value="Submit">

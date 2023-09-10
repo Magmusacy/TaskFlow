@@ -14,6 +14,7 @@ ul {
 :root {
     --border-grey: rgb(219, 219, 219);
     --button-hover: rgb(224, 224, 224);
+    --theme-color: rgb(255, 17, 17);
 }
 
 body {
@@ -29,7 +30,7 @@ header {
     display: grid;
     grid-template-columns: 40px 1fr 40px;
     align-items: center;
-    background-color: rgb(255, 17, 17);
+    background-color: var(--theme-color);
     padding: 10px;
 }
 

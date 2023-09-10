@@ -17,9 +17,8 @@ export function renderTask(task) {
 };
 
 function enableCompletion(task) {
-    const taskElement = document.querySelector(`#task-${task.id}`);
-    const completeButton = document.querySelector(`#task-${task.id}-completion`);
-    console.log('chuj', completeButton)
+    const taskElement = document.querySelector(`[data-task-id="${task.id}"]`);
+    const completeButton = document.querySelector(`[data-task-id="${task.id}"] button`);
     completeButton.addEventListener('click', () => {
         taskElement.remove()
         task.changeCompletionStatus();
@@ -29,9 +28,9 @@ function enableCompletion(task) {
 
 function itemTemplate(task, status) {
     return `        
-    <div id="task-${task.id}" class="task-item ${status}">
+    <div data-task-id="${task.id}" class="task-item ${status}">
         <div class="completion-status priority-${task.priority}">
-            <button id="task-${task.id}-completion" aria-label="complete task">
+            <button aria-label="complete task">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Completed mark</title><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" /></svg>
             </button>
         </div>
@@ -42,5 +41,5 @@ function itemTemplate(task, status) {
             ${format(task.dueDate, 'dd MMM yyyy')}
         </div>
     </div>
-    ` 
+    `;
 }
