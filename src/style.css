@@ -26,7 +26,10 @@ body {
 }
 
 header {
-    grid-column: 1 / -1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
     display: grid;
     grid-template-columns: 40px 1fr 40px;
     align-items: center;
@@ -58,7 +61,7 @@ main#task-container {
     grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 80px 2rem 2rem 2rem;
 }
 
 #new-task-form {

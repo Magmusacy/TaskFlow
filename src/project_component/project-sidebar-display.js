@@ -6,6 +6,7 @@ export function toggleSidebar(projects, currentProject) {
     chosenProject = currentProject;
     toggleOverlay();
     switchMenuIcon();
+    document.body.classList.toggle('hide-scroll');
     const headerElement = document.querySelector('header');
     const projectAside = document.querySelector('#project-aside');
     if (projectAside) {

@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import renderProject from '../project_component/project-display';
 
 export default function displayTaskModal(task, status, project) {
+    document.body.classList.add('hide-scroll');
     document.body.insertAdjacentHTML('afterbegin', `
         <div id="task-overlay" class="task-overlay">
             <div data-edit-task-id="${task.id}" id="task-display-modal" class="task-display-modal">
@@ -42,7 +43,6 @@ export default function displayTaskModal(task, status, project) {
     const closeModalButton = document.querySelector('#close-modal');
     const editTaskForm = document.querySelector('#edit-task-form');
     const completeTaskButton = document.querySelector(`[data-edit-task-id="${task.id}"] #completion-status`);
-    console.log(completeTaskButton)
     completeTaskButton.addEventListener('click', (e) => {
         task.changeCompletionStatus();
         const status = task.isCompleted ? 'completed' : 'upcoming';
@@ -69,6 +69,7 @@ export default function displayTaskModal(task, status, project) {
 }
 
 function hideTaskModal() {
+    document.body.classList.remove('hide-scroll');
     const taskOverlay = document.querySelector('#task-overlay');
     taskOverlay.remove();
 }
