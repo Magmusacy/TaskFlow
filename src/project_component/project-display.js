@@ -1,13 +1,13 @@
-import { renderTask } from '../task_component/task-display';
+import renderTask from '../task_component/task-display';
 import './project-styles.css';
 
-export function renderProject(project) {
+export default function renderProject(project) {
     const projectTitle = document.querySelector('#project-title');
     projectTitle.textContent = project.title;
     clearTasks();
 
     for (const task of project.tasks) {
-        renderTask(task);
+        renderTask(task, project);
     };
 }
 

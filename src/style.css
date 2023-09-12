@@ -78,7 +78,6 @@ main#task-container {
 }
 
 #new-task-form textarea {
-    width: 100%;
     resize: none;
 }
 
@@ -91,4 +90,12 @@ main#task-container {
     cursor: pointer;
     background-color: var(--button-hover);
     border-radius: 6px;
+}
+
+.sr-only {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }

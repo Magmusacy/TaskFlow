@@ -4,7 +4,7 @@ export let chosenProject;
 
 export function toggleSidebar(projects, currentProject) {
     chosenProject = currentProject;
-    toggleDimBody();
+    toggleOverlay();
     switchMenuIcon();
     const headerElement = document.querySelector('header');
     const projectAside = document.querySelector('#project-aside');
@@ -38,7 +38,7 @@ export function toggleSidebar(projects, currentProject) {
 
     projectContainer.insertAdjacentHTML('beforeend', `
         <form id="new-project-form" class="new-project-form">
-            <label for="new-project-title" hidden>New project title</label>
+            <label for="new-project-title" class="sr-only">New project title</label>
             <input id="new-project-title" type="text" placeholder="New project title" required>
 
             <input type="submit" value="Add new project">
@@ -46,15 +46,15 @@ export function toggleSidebar(projects, currentProject) {
     `); 
 }
 
-function toggleDimBody() {
+function toggleOverlay() {
     const headerElement = document.querySelector('header');
-    const dimBody = document.querySelector('#dim-body');
-    if (dimBody) {
-        dimBody.remove()
+    const projectOverlay = document.querySelector('#project-overlay');
+    if (projectOverlay) {
+        projectOverlay.remove()
         return;
     };
 
-    headerElement.insertAdjacentHTML('afterend', `<div id="dim-body"></div>`);
+    headerElement.insertAdjacentHTML('afterend', `<div id="project-overlay" class="project-overlay"></div>`);
 }
 
 function switchMenuIcon() {

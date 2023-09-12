@@ -2,10 +2,18 @@ import './normalize.css';
 import './style.css';
 import * as appFlow from './app-flow';
 import './project_component/project-display';
-import { renderProject } from './project_component/project-display';
-import { renderTask } from './task_component/task-display';
+import renderProject from './project_component/project-display';
+import renderTask from './task_component/task-display';
 import { toggleSidebarButton, toggleSidebar, refreshSidebar } from './project_component/project-sidebar-display';
- 
+// test
+appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
+appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
+appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
+appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
+appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
+appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
+renderProject(appFlow.currentProject);
+// test
 function enableSidebarButtons() {
     for (const projectButton of document.querySelectorAll('[data-project-id]')) {
         projectButton.addEventListener('click', (e) => {
@@ -19,6 +27,9 @@ function enableSidebarButtons() {
 
 function enableSidebarForm() {
     const newProjectForm = document.querySelector('#new-project-form');
+    if(!newProjectForm) {
+        return;
+    }
 
     newProjectForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -39,7 +50,7 @@ newTaskForm.addEventListener('submit', (e) => {
     const priority = +e.target.elements['priority'].value;
 
     const newTask = appFlow.addTask(title, description, dueDate, priority);
-    renderTask(newTask);
+    renderTask(newTask, appFlow.currentProject);
     e.target.reset();
 });
 
@@ -48,4 +59,3 @@ toggleSidebarButton.addEventListener('click', () => {
     enableSidebarButtons();
     enableSidebarForm();
 });
-

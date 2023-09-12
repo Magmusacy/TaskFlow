@@ -1,4 +1,4 @@
-div.task-item {
+.task-item {
     display: grid;
     grid-template-columns: 30px 1fr;
     grid-template-rows: repeat(3, 30px);
@@ -8,6 +8,14 @@ div.task-item {
     justify-content: space-around;
     border-top: 1px solid var(--border-grey);
     border-bottom: 1px solid var(--border-grey);
+    cursor: pointer;
+}
+
+:root {
+    --priority-1-color: red;
+    --priority-2-color: orange;
+    --priority-3-color: blue;
+    --priority-4-color: black;
 }
 
 .task-item.completed {
@@ -19,33 +27,52 @@ div.task-item {
     transform: scale(2);
 }
 
-/* Finish those priorities */
 .priority-1,
 .priority-1 button {
-    color: red;
-    fill: red;
+    color: var(--priority-1-color);
+    fill: var(--priority-1-color);
 }
 
 .priority-2,
 .priority-2 button {
-    color: orange;
-    fill: orange;
+    color: var(--priority-2-color);
+    fill: var(--priority-2-color);
 }
 
 .priority-3,
 .priority-3 button {
-    color: blue;
-    fill: blue;
+    color: var(--priority-3-color);
+    fill: var(--priority-3-color);
 }
 
 
 .priority-4,
 .priority-4 button {
-    color: black;
-    fill: black;
+    color: var(--priority-4-color);
+    fill: var(--priority-4-color);
 }
 
-.task-item .completion-status {
+.completed .completion-status.priority-1 button {
+    background-color: var(--priority-1-color);
+}
+
+.completed .completion-status.priority-2 button {
+    background-color: var(--priority-2-color);
+}
+
+.completed .completion-status.priority-3 button {
+    background-color: var(--priority-3-color);
+}
+
+.completed .completion-status.priority-4 button {
+    background-color: var(--priority-4-color);
+}
+
+.completed .completion-status button {
+    fill: white;
+}
+
+.completion-status {
     justify-self: center;
 }
 
@@ -97,8 +124,90 @@ div.task-item {
     gap: 5px;
 }
 
-.task-item .due-date svg {
+.task-item .due-date svg,
+.task-display .due-date svg {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+}
+
+.task-overlay {
+    background-color: rgb(0, 0, 0, 0.2);
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.task-display-modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed; 
+    top: 100px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 999;
+    padding: 10px;
+}
+
+.task-display {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    grid-template-rows: 30px 50px 30px 30px;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem;
+}
+
+.task-display div:nth-child(n + 3) {
+    grid-column: 2 / -1;
+}
+
+.task-display .title,
+.task-display .description {
+    width: 100%;
+    border: 0;
+    outline: 0;
+}
+
+.task-display .description {
+    resize: none;
+    color: rgb(51, 51, 51);
+    font-size: 0.9rem;
+}
+
+.save-task-button {
+    grid-column: 1 / -1;
+    padding: 6px;
+    border: 0;
+    border-radius: 6px;
+}
+
+.save-task-button:hover {
+    cursor: pointer;
+    background-color: var(--button-hover);
+}
+
+.task-display-modal .close-modal {
+    align-self: flex-end;
+    padding: 10px;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 6px;
+}
+
+.close-modal svg {
+    width: 20px;
+    height: 20px;
+}
+
+.task-display-modal .close-modal:hover {
+    background-color: var(--button-hover);
+    cursor: pointer;
 }
