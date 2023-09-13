@@ -2,14 +2,21 @@ import { format } from 'date-fns';
 import renderProject from '../project_component/project-display';
 import { saveProject } from '../storage-handler';
 
-export default function displayTaskModal(task, status, project) {
+export default function displayTaskModal(task, project) {
+    const status = task.isCompleted ? 'completed' : 'upcoming';
     document.body.classList.add('hide-scroll');
     document.body.insertAdjacentHTML('afterbegin', `
         <div id="task-overlay" class="task-overlay">
             <div data-edit-task-id="${task.id}" id="task-display-modal" class="task-display-modal">
-                <button id="close-modal" class="close-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></svg>    
-                </button>
+                <div class="buttons">
+                    <button id="task-delete" class="task-delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Delete button</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>
+                    </button>
+                    <button id="close-modal" class="close-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></svg>    
+                    </button>
+                </div>
+
                 <form id="edit-task-form" class="task-display ${status}"> 
                     <div id="completion-status" class="completion-status priority-${task.priority}">
                         <button aria-label="complete task" type="button">
@@ -41,15 +48,35 @@ export default function displayTaskModal(task, status, project) {
         </div>
     `);
 
-    const closeModalButton = document.querySelector('#close-modal');
-    const editTaskForm = document.querySelector('#edit-task-form');
+    enableDeleteTaskButton(task, project);
+    enableCompleteTaskButton(task, project);
+    enableEditTaskForm(task, project);
+    enableCloseModalButton(project);
+}
+
+function enableDeleteTaskButton(task, project) {
+    const deleteTaskButton = document.querySelector(`[data-edit-task-id="${task.id}"] #task-delete`);
+
+    deleteTaskButton.addEventListener('click', () => {
+        project.deleteTask(task.id);
+        saveProject(project);
+        hideTaskModal();
+        renderProject(project);
+    });
+}
+
+function enableCompleteTaskButton(task, project) {
     const completeTaskButton = document.querySelector(`[data-edit-task-id="${task.id}"] #completion-status`);
-    completeTaskButton.addEventListener('click', (e) => {
+
+    completeTaskButton.addEventListener('click', () => {
         task.changeCompletionStatus();
-        const status = task.isCompleted ? 'completed' : 'upcoming';
-        refreshTaskModal(task, status, project);
+        refreshTaskModal(task, project);
         saveProject(project);
     });
+}
+
+function enableEditTaskForm(task, project) {
+    const editTaskForm = document.querySelector('#edit-task-form');
 
     editTaskForm.addEventListener('input', (e) => {
         e.preventDefault();
@@ -60,10 +87,15 @@ export default function displayTaskModal(task, status, project) {
         // Update priority color
         if (newPriority != task.priority) {
             task.priority = +editTaskForm.elements['priority'].value;
-            refreshTaskModal(task, status, project)
+            refreshTaskModal(task, project);
         };
+
         saveProject(project);
     });
+}
+
+function enableCloseModalButton(project) {
+    const closeModalButton = document.querySelector('#close-modal');
 
     closeModalButton.addEventListener('click', () => {
         hideTaskModal();
@@ -77,7 +109,7 @@ function hideTaskModal() {
     taskOverlay.remove();
 }
 
-function refreshTaskModal(task, status, project) {
+function refreshTaskModal(task, project) {
     hideTaskModal();
-    displayTaskModal(task, status, project);
+    displayTaskModal(task, project);
 }

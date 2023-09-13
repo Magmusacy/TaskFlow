@@ -1,6 +1,6 @@
 .task-item {
     display: grid;
-    grid-template-columns: 30px 1fr;
+    grid-template-columns: 30px 1fr 30px;
     grid-template-rows: repeat(3, 30px);
     align-items: center;
     gap: 0.2rem;
@@ -103,8 +103,30 @@
     background-color: var(--button-hover);
 }
 
+.task-item .task-delete {
+    grid-column: 3 / -1;
+    width: 100%;
+    height: 100%;
+}
+
+.task-item .task-delete button {
+    display: flex;
+    align-items: center;
+    border: 0;
+    background-color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+.task-item .task-delete button:hover {
+    background-color: var(--button-hover);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 .task-item .title {
     grid-column: 2;
+    grid-row: 1;
     font-size: 1.2rem;
     font-weight: 400;
 }
@@ -125,7 +147,8 @@
 }
 
 .task-item .due-date svg,
-.task-display .due-date svg {
+.task-display .due-date svg,
+.task-item .task-delete svg {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
@@ -181,20 +204,14 @@
     font-size: 0.9rem;
 }
 
-.save-task-button {
-    grid-column: 1 / -1;
-    padding: 6px;
-    border: 0;
-    border-radius: 6px;
+.task-display-modal .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
-.save-task-button:hover {
-    cursor: pointer;
-    background-color: var(--button-hover);
-}
-
-.task-display-modal .close-modal {
-    align-self: flex-end;
+.task-display-modal .close-modal,
+.task-display-modal .task-delete {
     padding: 10px;
     border: 0;
     height: 40px;
@@ -202,12 +219,14 @@
     border-radius: 6px;
 }
 
-.close-modal svg {
+.task-display-modal .close-modal svg,
+.task-display-modal .task-delete svg {
     width: 20px;
     height: 20px;
 }
 
-.task-display-modal .close-modal:hover {
+.task-display-modal .close-modal:hover,
+.task-display-modal .task-delete:hover {
     background-color: var(--button-hover);
     cursor: pointer;
 }
