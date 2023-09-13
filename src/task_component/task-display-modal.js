@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import renderProject from '../project_component/project-display';
+import { saveProject } from '../storage-handler';
 
 export default function displayTaskModal(task, status, project) {
     document.body.classList.add('hide-scroll');
@@ -47,6 +48,7 @@ export default function displayTaskModal(task, status, project) {
         task.changeCompletionStatus();
         const status = task.isCompleted ? 'completed' : 'upcoming';
         refreshTaskModal(task, status, project);
+        saveProject(project);
     });
 
     editTaskForm.addEventListener('input', (e) => {
@@ -60,6 +62,7 @@ export default function displayTaskModal(task, status, project) {
             task.priority = +editTaskForm.elements['priority'].value;
             refreshTaskModal(task, status, project)
         };
+        saveProject(project);
     });
 
     closeModalButton.addEventListener('click', () => {

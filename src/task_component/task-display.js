@@ -1,6 +1,7 @@
 import './task-styles.css';
 import { format } from 'date-fns';
 import displayTaskModal from './task-display-modal';
+import { saveProject } from '../storage-handler';
 
 export default function renderTask(task, project) {
     const status = task.isCompleted ? 'completed' : 'upcoming';
@@ -25,6 +26,7 @@ function enableCompletion(task, project) {
         taskElement.remove();
         task.changeCompletionStatus();
         renderTask(task, project);
+        saveProject(project);
     });
 }
 
