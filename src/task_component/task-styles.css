@@ -230,3 +230,11 @@
     background-color: var(--button-hover);
     cursor: pointer;
 }
+
+@media (min-width: 800px) {
+    .task-display-modal {
+        left: 20vw;
+        right: 20vw;
+        bottom: 200px;
+    }
+}

@@ -31,6 +31,7 @@ header {
     align-items: center;
     background-color: var(--theme-color);
     padding: 10px;
+    font-size: 24px;
 }
 
 header button {
@@ -97,4 +98,11 @@ main#task-container {
     width: 1px;
     height: 1px;
     overflow: hidden;
+}
+
+@media (min-width: 800px) {
+    main#task-container {
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
 }
