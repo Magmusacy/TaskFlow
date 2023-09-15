@@ -12,12 +12,6 @@ if (savedProjects.length) {
     appFlow.loadProjects(savedProjects);
     appFlow.changeCurrentProject(loadCurrentProjectId());
 } else {
-    appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
-    appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
-    appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
-    appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
-    appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
-    appFlow.addTask('Test1', 'Tedst2', new Date('2024-09-29T19:20'), 2)
     for (const project of appFlow.projects) {
         saveProject(project);
         saveCurrentProjectId(appFlow.currentProject.id);
