@@ -1,8 +1,12 @@
-import './project-styles.css';
+import renderProject from './project-display';
+import { saveProject, saveCurrentProjectId } from '../storage-handler';
+import './project-styles.css';  
 export const toggleSidebarButton = document.querySelector('#toggle-sidebar');
 export let chosenProject;
 
-export function toggleSidebar(projects, currentProject) {
+export function toggleSidebar(app) {
+    const projects = app.projects;
+    const currentProject = app.currentProject;
     chosenProject = currentProject;
     toggleOverlay();
     switchMenuIcon();
@@ -39,12 +43,16 @@ export function toggleSidebar(projects, currentProject) {
 
     projectContainer.insertAdjacentHTML('beforeend', `
         <form id="new-project-form" class="new-project-form">
-            <label for="new-project-title" class="sr-only">New project title</label>
+            <label for="new-proimport renderProject from './project_component/project-display';
+            ject-title" class="sr-only">New project title</label>
             <input id="new-project-title" type="text" placeholder="New project title" required>
 
             <input type="submit" value="Add new project">
         </form>
     `); 
+
+    enableSidebarForm(app);
+    enableSidebarButtons(app);
 }
 
 function toggleOverlay() {
@@ -68,7 +76,36 @@ function switchMenuIcon() {
     }
 }
 
-export function refreshSidebar(projects, currentProject) {
-    toggleSidebar(projects, currentProject);
-    toggleSidebar(projects, currentProject);
+export function refreshSidebar(app) {
+    toggleSidebar(app);
+    toggleSidebar(app);
+}
+
+function enableSidebarForm(app) {
+    const newProjectForm = document.querySelector('#new-project-form');
+    if(!newProjectForm) {
+        return;
+    }
+
+    newProjectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = e.target.elements['new-project-title'].value;
+        const newProject = app.addProject(title);
+        refreshSidebar(app);
+        enableSidebarButtons(app);
+        enableSidebarForm(app);
+        saveProject(newProject);
+    });
+}
+
+function enableSidebarButtons(app) {
+    for (const projectButton of document.querySelectorAll('[data-project-id]')) {
+        projectButton.addEventListener('click', (e) => {
+            const newProjectId = +e.target.dataset.projectId;
+            app.changeCurrentProject(newProjectId);
+            renderProject(app.currentProject);
+            toggleSidebar(app);
+            saveCurrentProjectId(newProjectId);
+        });
+    };
 }
